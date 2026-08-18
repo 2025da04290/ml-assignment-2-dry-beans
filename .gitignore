@@ -1,0 +1,7 @@
+dry_bean.zip
+dry_bean_raw/
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+ML_Assignment_2 (2).pdf
