@@ -14,6 +14,8 @@ The chosen problem is **Dry Bean classification**: given 16 morphological featur
 |---|---|
 | **Name** | Dry Beans |
 | **Source** | UCI Machine Learning Repository (ID: 602) |
+| **Dataset page** | [archive.ics.uci.edu/dataset/602/dry+bean+dataset](https://archive.ics.uci.edu/dataset/602/dry+bean+dataset) |
+| **Download URL** | `https://archive.ics.uci.edu/static/public/602/dry+bean+dataset.zip` |
 | **Instances** | 13,611 |
 | **Features** | 16 (all numeric) |
 | **Classes** | 7 (Barbunya, Bombay, Cali, Dermason, Horoz, Seker, Sira) |
