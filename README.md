@@ -126,6 +126,8 @@ ml-assignment-2-dry-beans/
 
 ## Deployment (Streamlit Community Cloud)
 
+**Live app:** [https://2025da04290-ml-assignment-2-dry-beans.streamlit.app/](https://2025da04290-ml-assignment-2-dry-beans.streamlit.app/)
+
 1. Push the repository to GitHub (including the `model/` folder with `.joblib` files).
 2. Go to [https://streamlit.io/cloud](https://streamlit.io/cloud)
 3. Sign in with GitHub → **New App**
