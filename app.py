@@ -29,6 +29,78 @@ st.set_page_config(
     layout="wide",
 )
 
+STUDENT_NAME = "K Vishnu"
+STUDENT_ID = "2025DA04290"
+
+# ── styling ──────────────────────────────────────────────────────────────
+st.markdown(
+    """
+    <style>
+    .stApp { background-color: #0e1117; }
+
+    .hero {
+        background: linear-gradient(135deg, #7a3b1e 0%, #b5651d 55%, #d98e3f 100%);
+        border-radius: 14px;
+        padding: 28px 32px;
+        margin-bottom: 22px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    }
+    .hero h1 {
+        color: #ffffff;
+        font-size: 2.1rem;
+        margin: 0 0 6px 0;
+        font-weight: 800;
+    }
+    .hero p {
+        color: #fbe8d3;
+        font-size: 1.05rem;
+        margin: 0;
+    }
+
+    .student-card {
+        background: #1c2029;
+        border: 1px solid #333944;
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-bottom: 14px;
+    }
+    .student-card .label {
+        color: #9aa4b2;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 2px;
+    }
+    .student-card .value {
+        color: #f4f4f4;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .section-badge {
+        display: inline-block;
+        background: #b5651d;
+        color: white;
+        border-radius: 6px;
+        padding: 2px 10px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin-bottom: 6px;
+    }
+
+    div[data-testid="stMetric"] {
+        background: #1c2029;
+        border: 1px solid #333944;
+        border-radius: 10px;
+        padding: 12px 14px 6px 14px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model")
 
 MODEL_FILES = {
@@ -85,6 +157,17 @@ def compute_metrics(model, X, y, n_classes):
 
 
 # ── sidebar ──────────────────────────────────────────────────────────────
+st.sidebar.markdown(
+    f"""
+    <div class="student-card">
+        <div class="label">Student</div>
+        <div class="value">👤 {STUDENT_NAME}</div>
+        <div class="label">BITS ID</div>
+        <div class="value">🎓 {STUDENT_ID}</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 st.sidebar.title("🫘 Dry Beans Classifier")
 st.sidebar.markdown("---")
 st.sidebar.markdown(
@@ -96,14 +179,24 @@ model_choice = st.sidebar.selectbox(
 )
 st.sidebar.markdown("---")
 st.sidebar.markdown("Upload test data CSV to evaluate.")
+st.sidebar.markdown("---")
+st.sidebar.caption(f"ML Assignment 2 · {STUDENT_NAME} · {STUDENT_ID}")
 
 # ── main area ────────────────────────────────────────────────────────────
-st.title("Machine Learning Assignment 2")
-st.markdown("### Classification Models on the Dry Beans Dataset")
+st.markdown(
+    f"""
+    <div class="hero">
+        <h1>🫘 Machine Learning Assignment 2</h1>
+        <p>Classification Models on the Dry Beans Dataset &nbsp;·&nbsp; {STUDENT_NAME} ({STUDENT_ID})</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ── overview table ───────────────────────────────────────────────────────
 metrics_summary = load_metrics_summary()
 if metrics_summary is not None:
+    st.markdown('<span class="section-badge">OVERVIEW</span>', unsafe_allow_html=True)
     st.markdown("#### 📊 Model Comparison (Training Evaluation)")
     fmt_df = metrics_summary.copy()
     for c in fmt_df.columns:
@@ -113,6 +206,7 @@ if metrics_summary is not None:
 st.markdown("---")
 
 # ── file upload ──────────────────────────────────────────────────────────
+st.markdown('<span class="section-badge">EVALUATE</span>', unsafe_allow_html=True)
 uploaded = st.file_uploader("📤 Upload test_data.csv", type=["csv"])
 
 if uploaded is not None:
@@ -187,6 +281,7 @@ if uploaded is not None:
     st.markdown("---")
 
     # ── confusion matrix ──────────────────────────────────────────────────
+    st.markdown('<span class="section-badge">RESULTS</span>', unsafe_allow_html=True)
     st.markdown(f"#### 🔲 Confusion Matrix — {model_choice}")
     cm = confusion_matrix(y, y_pred)
 
@@ -239,3 +334,6 @@ else:
         "it should contain the 16 numeric feature columns plus a `Class` "
         "(encoded) or `Class_Name` (string) target column."
     )
+
+st.markdown("---")
+st.caption(f"Machine Learning Assignment 2 · Dry Beans Classification · {STUDENT_NAME} ({STUDENT_ID})")
